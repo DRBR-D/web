@@ -775,6 +775,201 @@ section p {
   }
 }
 
+/* Compact navigation and touch layouts for small phones */
+@media (max-width: 820px) {
+  .localnav {
+    height: auto;
+    min-height: 52px;
+  }
+
+  .localnav-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-rows: auto auto;
+    gap: 4px 10px;
+    height: auto;
+    padding: 6px 16px 0;
+  }
+
+  .localnav-title {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .localnav-menu {
+    display: contents;
+  }
+
+  .localnav-menu-items {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    gap: 20px;
+    padding: 7px 0 11px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .localnav-menu-items::-webkit-scrollbar {
+    display: none;
+  }
+
+  .localnav-menu-link {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .lang-dropdown-container {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .lang-btn {
+    min-height: 40px;
+    max-width: 150px;
+    font-size: 12px;
+  }
+
+  .button-multi-container {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .button-download {
+    min-height: 40px;
+    padding: 7px 12px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .section {
+    padding-block: 54px;
+  }
+
+  .section-hero {
+    padding-top: 40px;
+  }
+
+  .section-content {
+    padding-inline: 18px;
+  }
+
+  .bento-card {
+    padding: 26px;
+  }
+
+  .animation-btn {
+    min-height: 44px;
+  }
+
+  .faq-item summary {
+    gap: 16px;
+    padding: 18px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .localnav-content {
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 4px 6px;
+    padding-inline: 10px;
+  }
+
+  .localnav-title {
+    font-size: 18px;
+  }
+
+  .localnav-title a {
+    gap: 5px !important;
+  }
+
+  .lang-btn {
+    gap: 4px;
+    max-width: 128px;
+    padding-inline: 7px;
+    font-size: 11px;
+  }
+
+  .lang-menu {
+    max-width: min(90vw, 250px);
+  }
+
+  .button-download {
+    padding-inline: 8px;
+    font-size: 11px;
+  }
+
+  .section {
+    padding-block: 44px;
+  }
+
+  .section-hero {
+    padding-top: 32px;
+  }
+
+  .section-content {
+    padding-inline: 14px;
+  }
+
+  .typography-intro {
+    font-size: 18px;
+  }
+
+  .feedback-card {
+    padding: 22px 17px;
+    border-radius: 18px;
+  }
+
+  .feedback-submit {
+    min-height: 44px;
+    width: 100%;
+  }
+
+  .bento-card {
+    padding: 22px 18px;
+    border-radius: 18px;
+  }
+
+  .note-card {
+    padding: 24px 17px;
+    border-radius: 20px;
+  }
+
+  .footer-content {
+    padding-inline: 14px;
+  }
+}
+
+@media (max-width: 359px) {
+  .localnav-content {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding-inline: 8px;
+  }
+
+  .lang-dropdown-container {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .button-multi-container {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    padding: 0 0 8px;
+  }
+
+  .button-multi-container .button-download {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .localnav-menu-items {
+    grid-row: 2;
+  }
+}
+
 /* ========== Apple Bento Grid (Section Customization) ========== */
 .bento-grid {
   display: grid;
