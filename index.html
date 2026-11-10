@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <script>
+    try {
+      document.querySelector('meta[name="color-scheme"]').content = localStorage.getItem("color-scheme") ?? "light dark";
+    } catch {}
+  </script>
+  <title>WBB — Tai thỏ thông minh & Đổi hình nền cho máy tính Windows</title>
+  <meta name="description" content="WBB mang Dynamic Island lên màn hình máy tính Windows: đổi hình nền lượn sóng cực mượt, tự né cửa sổ không lo vướng víu, siêu nhẹ máy không lo giật lag." />
+  <link rel="icon" type="image/x-icon" href="assets/app-icon.ico" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body id="index">
+
+  <!-- ================= THANH MENU TRÊN CÙNG ================= -->
+  <nav id="localnav" class="localnav" aria-label="Menu chính">
+    <div class="localnav-content">
+      <h2 class="localnav-title">
+        <a href="#" style="display: inline-flex; align-items: center; gap: 8px;">
+          <img src="assets/app-icon.ico" width="22" height="22" alt="Icon WBB" style="border-radius: 5px;" />
+          <span>WBB</span>
+        </a>
+      </h2>
+      <div class="localnav-menu">
+        <ul class="localnav-menu-items">
+          <li><a href="#overview" class="localnav-menu-link active" data-i18n="nav_overview">Giới thiệu</a></li>
+          <li><a href="#features" class="localnav-menu-link" data-i18n="nav_features">Tính năng</a></li>
+          <li><a href="#customization" class="localnav-menu-link" data-i18n="nav_custom">Tùy biến</a></li>
+          <li><a href="#performance" class="localnav-menu-link" data-i18n="nav_perf">Độ mượt</a></li>
+          <li><a href="#privacy" class="localnav-menu-link" data-i18n="nav_privacy">Riêng tư</a></li>
+          <li><a href="#faq" class="localnav-menu-link" data-i18n="nav_faq">Hỏi đáp</a></li>
+        </ul>
+
+        <!-- Bộ chọn 10 thứ tiếng -->
+        <div class="lang-dropdown-container" id="lang-dropdown">
+          <button type="button" class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false" title="Chọn ngôn ngữ">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span id="current-lang-label">Tiếng Việt</span>
+            <svg width="8" height="5" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="lang-menu" id="lang-menu" role="menu">
+            <button type="button" class="lang-option active" data-lang="vi">Tiếng Việt</button>
+            <button type="button" class="lang-option" data-lang="en">English</button>
+            <button type="button" class="lang-option" data-lang="zh">中文 (Chinese)</button>
+            <button type="button" class="lang-option" data-lang="ja">日本語 (Japanese)</button>
+            <button type="button" class="lang-option" data-lang="ko">한국어 (Korean)</button>
+            <button type="button" class="lang-option" data-lang="fr">Français (French)</button>
+            <button type="button" class="lang-option" data-lang="de">Deutsch (German)</button>
+            <button type="button" class="lang-option" data-lang="es">Español (Spanish)</button>
+            <button type="button" class="lang-option" data-lang="ru">Русский (Russian)</button>
+            <button type="button" class="lang-option" data-lang="id">Bahasa Indonesia</button>
+          </div>
+        </div>
+
+        <div class="button-multi-container">
+          <a href="WbbSetup.exe" download="WbbSetup.exe" class="button-download" id="download-btn" data-i18n="nav_download">
+            Tải về cài đặt
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= NỘI DUNG CHÍNH ================= -->
+  <main id="main" class="main bg-fill" role="main">
+
+    <!-- 1. PHẦN MỞ ĐẦU / HERO -->
+    <section id="overview" class="section section-hero">
+      <div class="section-content text-center">
+        <img class="center-icon" src="assets/app-icon.ico" height="96" alt="Biểu tượng WBB" style="border-radius: 20px; box-shadow: 0 12px 30px rgba(0,0,0,0.25);" />
+
+        <h1 class="typography-headline">WBB</h1>
+        <p class="typography-intro" data-i18n="hero_intro">
+          Màn hình máy tính của bạn, từ nay đã thú vị hơn. Trải nghiệm thanh Dynamic Island như trên điện thoại cao cấp: đổi hình nền lướt sóng siêu mượt, tự động né cửa sổ không sợ che mất việc, dùng nhẹ tênh không tốn pin hay nóng máy.
+        </p>
+
+        <!-- Nút Tải về -->
+        <div style="margin-top: 26px; display: flex; gap: 14px; justify-content: center; align-items: center; flex-wrap: wrap;">
+          <a href="WbbSetup.exe" download="WbbSetup.exe" class="button-download" style="padding: 11px 26px; font-size: 15px; font-weight: 500;" data-i18n="hero_btn">
+            Tải về cho Windows (WbbSetup.exe)
+          </a>
+        </div>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 10px;" data-i18n="hero_sub">
+          Bộ cài đặt tự động siêu nhẹ (chưa tới 1 MB) • Miễn phí • Dành cho Windows 10 &amp; 11
+        </p>
+
+        <figure class="device-hero">
+          <img src="assets/screenshots/screenshot_island_expanded.jpg" alt="Thanh tai thỏ WBB khi mở rộng để chọn hình nền" style="border-radius: 14px; border: 1px solid var(--border-color); box-shadow: 0 20px 40px rgba(0,0,0,0.2);" />
+        </figure>
+      </div>
+
+      <!-- Khung thông báo nhanh -->
+      <div class="section-content">
+        <div class="callout">
+          <div class="callout-icon">
+            <img src="assets/app-icon.ico" width="100" alt="Bộ cài đặt chính chủ WBB" style="border-radius: 18px;" />
+          </div>
+          <div class="callout-body">
+            <h4 data-i18n="callout_title">Bộ cài đặt tự động riêng • Cài dễ, gỡ sạch, không rác máy</h4>
+            <p data-i18n="callout_desc">
+              Tự động khởi động cùng máy tính mỗi khi bạn bật nguồn, có sẵn lối tắt ngoài màn hình chính. Bạn có thể chọn thư mục lưu theo ý muốn và có nút gỡ cài đặt sạch bóng bất cứ khi nào bạn không dùng nữa.
+            </p>
+            <p><a href="#performance" class="more" data-i18n="callout_more">Xem chi tiết độ nhẹ máy</a></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PHẢN HỒI ================= -->
+    <section class="section feedback-section" id="feedback" aria-labelledby="feedback-title">
+      <div class="section-content">
+        <div class="feedback-card">
+          <div class="feedback-intro">
+            <p class="typography-eyebrow-reduced">Góp ý cho WBB</p>
+            <h2 id="feedback-title">Bạn muốn WBB tốt hơn ở điểm nào?</h2>
+            <p>Gửi góp ý hoặc báo lỗi trực tiếp cho người phát triển. Bạn có thể gửi ẩn danh; email chỉ cần thiết nếu muốn được phản hồi.</p>
+          </div>
+
+          <form class="feedback-form" id="feedback-form">
+            <input type="text" name="_honey" class="feedback-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <input type="hidden" name="_subject" value="Phản hồi mới từ website WBB" />
+
+            <div class="feedback-form-row">
+              <div class="feedback-field">
+                <label for="feedback-type">Loại phản hồi</label>
+                <select id="feedback-type" name="loai_phan_hoi" required>
+                  <option value="" selected disabled>Chọn một mục</option>
+                  <option>Góp ý</option>
+                  <option>Báo lỗi</option>
+                  <option>Đề xuất tính năng</option>
+                </select>
+              </div>
+              <div class="feedback-field">
+                <label for="feedback-email">Email <span>(không bắt buộc)</span></label>
+                <input id="feedback-email" name="email" type="email" autocomplete="email" placeholder="ban@example.com" />
+              </div>
+            </div>
+
+            <div class="feedback-field">
+              <label for="feedback-message">Nội dung</label>
+              <textarea id="feedback-message" name="noi_dung" rows="4" maxlength="3000" placeholder="Chia sẻ điều bạn muốn góp ý…" required></textarea>
+            </div>
+
+            <div class="feedback-form-footer">
+              <p class="feedback-privacy">Không cần đăng nhập. Email là tùy chọn.</p>
+              <button class="feedback-submit" type="submit">Gửi góp ý</button>
+            </div>
+            <p class="feedback-status" id="feedback-status" role="status" aria-live="polite"></p>
+            <noscript><p class="feedback-status">Hãy bật JavaScript để gửi góp ý.</p></noscript>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. HIỆU ỨNG CHUYỂN CẢNH HÌNH NỀN -->
+    <section id="features" class="section section-coding-intelligence bg-alt">
+      <div class="section-content">
+        <div class="grid">
+          <div class="grid-item large-span-12">
+            <h3 class="typography-eyebrow-reduced" data-i18n="anim_eyebrow">Đổi hình nền nghệ thuật</h3>
+            <h2 id="anim-headline" data-i18n="anim_title">Biến hóa màn hình với 6 kiểu chuyển cảnh đẹp mắt</h2>
+            <p id="anim-desc" data-i18n="anim_desc_default">
+              Không còn cảnh hình nền đổi cái bụp nhàm chán. Mỗi lần bấm chuyển ảnh, màn hình của bạn sẽ biến ảo mượt mà với hiệu ứng sóng lượn Genie, vết mực lan tỏa hay những chuyển động điện ảnh tinh tế.
+            </p>
+          </div>
+          <div class="grid-item large-span-12">
+            <!-- Khung chiếu video animation -->
+            <div class="animation-player-container">
+              <video id="anim-video" src="assets/animations/cinematic.mp4" autoplay loop muted playsinline preload="auto"></video>
+            </div>
+
+            <!-- 6 Nút chọn hiệu ứng animation -->
+            <div class="animation-controls" role="tablist" aria-label="Danh sách hiệu ứng">
+              <button type="button" class="animation-btn active" data-index="0" data-name="Cinematic Zoom" data-desc-vi="Hiệu ứng thu phóng xa gần như những thước phim điện ảnh ấn tượng." data-desc-en="Cinematic zoom transition just like widescreen movie scenes.">
+                Cinematic
+              </button>
+              <button type="button" class="animation-btn" data-index="1" data-name="Genie" data-desc-vi="Màn hình uốn lượn nhịp nhàng như dải lụa bay khi chuyển sang bức tranh mới." data-desc-en="The screen ripples smoothly like flying silk into the new picture.">
+                Genie
+              </button>
+              <button type="button" class="animation-btn" data-index="2" data-name="Ink" data-desc-vi="Giọt mực ảo giác lan tỏa mềm mại và đều khắp các góc màn hình." data-desc-en="Illusory ink drops spread softly across every corner of your display.">
+                Ink
+              </button>
+              <button type="button" class="animation-btn" data-index="3" data-name="Diagonal Wipe" data-desc-vi="Dải quét mượt mà lướt chéo từ góc màn hình mở ra khung cảnh mới." data-desc-en="A smooth diagonal wipe reveals your next desktop wallpaper.">
+                Diagonal
+              </button>
+              <button type="button" class="animation-btn" data-index="4" data-name="Grid Dissolve" data-desc-vi="Hình nền tan biến thành từng ô lưới tinh tế rồi ghép nối hình ảnh mới." data-desc-en="Wallpapers dissolve gently into grids before forming the new image.">
+                Grid
+              </button>
+              <button type="button" class="animation-btn" data-index="5" data-name="Random" data-desc-vi="Mỗi lần chuyển ảnh là một hiệu ứng bất ngờ, không lần nào trùng lần nào." data-desc-en="A surprise animation every single time you change wallpapers.">
+                Random
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TỰ NÉ CỬA SỔ -->
+    <section class="section section-previews">
+      <div class="section-content">
+        <div class="grid">
+          <div class="grid-item large-span-12">
+            <h3 class="typography-eyebrow-reduced" data-i18n="dodge_eyebrow">Biết điều và tinh tế</h3>
+            <h2 data-i18n="dodge_title">Tự động né ra khi bạn đang làm việc</h2>
+            <p data-i18n="dodge_desc">
+              Nỗi sợ lớn nhất của các ứng dụng trang trí là che mất nút tắt, nút thu nhỏ hay các tab trình duyệt. WBB rất thông minh: hễ bạn kéo cửa sổ làm việc lên sát mép trên, nó sẽ tự động thu nhỏ lại thành một vệt mỏng hoặc tự né sang chỗ khác để nhường chỗ cho bạn làm việc.
+            </p>
+          </div>
+          <div class="grid-item large-span-12">
+            <div class="tile" style="border: 1px solid var(--border-color);">
+              <picture>
+                <img src="assets/screenshots/screenshot_docked_mode.jpg" alt="WBB tự thu nhỏ lại để không vướng víu" />
+              </picture>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TÙY BIẾN THEO Ý THÍCH (APPLE BENTO GRID) -->
+    <section id="customization" class="section section-customization bg-alt">
+      <div class="section-content">
+        <h3 class="typography-eyebrow-reduced" data-i18n="custom_eyebrow">Khay hệ thống tiện ích</h3>
+        <h2 style="font-size: clamp(34px, 4vw, 48px); margin-bottom: 12px;" data-i18n="custom_headline">Tùy biến linh hoạt theo cách của bạn</h2>
+        <p style="font-size: 16px; color: var(--text-secondary); max-width: 650px;" data-i18n="custom_intro">
+          Nhấp chuột phải vào biểu tượng WBB ở khay đồng hồ để làm chủ mọi hành vi của tai thỏ trên màn hình.
+        </p>
+
+        <!-- Bento Grid chuẩn phong cách Apple Feature Blocks -->
+        <div class="bento-grid">
+          <!-- Khối lớn: Menu khay hệ thống tương tác -->
+          <div class="bento-card bento-card-large">
+            <div class="bento-header">
+              <span class="bento-tag">Menu điều khiển</span>
+              <h3 data-i18n="bento_tray_title">Truy cập tức thì từ thanh tác vụ</h3>
+              <p data-i18n="bento_tray_desc">Bấm chuột phải cạnh đồng hồ để bật tắt nhanh chế độ luôn nổi, tự né cửa sổ hoặc chọn nhanh hiệu ứng chuyển cảnh.</p>
+            </div>
+            <div class="bento-visual-tray">
+              <div class="apple-tray-window">
+                <div class="apple-tray-row checked">
+                  <span>Center at the top</span>
+                  <span class="apple-tray-check">✓</span>
+                </div>
+                <div class="apple-tray-row checked">
+                  <span>Always on top</span>
+                  <span class="apple-tray-check">✓</span>
+                </div>
+                <div class="apple-tray-row checked">
+                  <span>Expand on hover</span>
+                  <span class="apple-tray-check">✓</span>
+                </div>
+                <div class="apple-tray-row checked">
+                  <span>Collapse when covered</span>
+                  <span class="apple-tray-check">✓</span>
+                </div>
+                <div class="apple-tray-divider"></div>
+                <div class="apple-tray-row" style="color: var(--accent-blue);">
+                  <span>Effects</span>
+                  <span>›</span>
+                </div>
+                <div class="apple-tray-divider"></div>
+                <div class="apple-tray-row">
+                  <span>Settings</span>
+                </div>
+                <div class="apple-tray-row" style="color: #ff453a;">
+                  <span>Exit Wbb</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Khối cao: Chế độ Rê chuột & Tự né -->
+          <div class="bento-card bento-card-tall">
+            <div class="bento-header">
+              <span class="bento-tag">Cử chỉ thông minh</span>
+              <h3 data-i18n="bento_hover_title">Chạm nhẹ là mở</h3>
+              <p data-i18n="bento_hover_desc">Đưa chuột lướt qua để mở rộng thư viện ảnh, kéo cửa sổ lên là tự né sang một bên.</p>
+            </div>
+            <div class="bento-badge-group">
+              <div class="bento-badge">
+                <div class="bento-badge-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v8"></path>
+                    <path d="m4.93 10.93 1.41 1.41"></path>
+                    <path d="M2 18h2"></path>
+                    <path d="M20 18h2"></path>
+                    <path d="m19.07 10.93-1.41 1.41"></path>
+                    <path d="M22 22H2"></path>
+                    <path d="m8 22 4-10 4 10"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-weight: 600;">Expand on hover</div>
+                  <div style="font-size: 12px; color: var(--text-secondary);">Rê chuột để mở gallery</div>
+                </div>
+              </div>
+              <div class="bento-badge">
+                <div class="bento-badge-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <path d="m9 12 2 2 4-4"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-weight: 600;">Collapse when covered</div>
+                  <div style="font-size: 12px; color: var(--text-secondary);">Tự co lại khi chạm cửa sổ</div>
+                </div>
+              </div>
+              <div class="bento-badge">
+                <div class="bento-badge-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M12 2v3"></path>
+                    <path d="M12 19v3"></path>
+                    <path d="M2 12h3"></path>
+                    <path d="M19 12h3"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-weight: 600;">Always on top</div>
+                  <div style="font-size: 12px; color: var(--text-secondary);">Luôn sẵn sàng trên cùng</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Khối nhỏ 1: Vị trí cố định -->
+          <div class="bento-card bento-card-small">
+            <div class="bento-header">
+              <span class="bento-tag">Định vị</span>
+              <h3>Center at the top</h3>
+              <p>Luôn căn chỉnh chính xác 100% vào tâm mép trên màn hình, cân đối tuyệt đối trên mọi độ phân giải.</p>
+            </div>
+            <div class="bento-metric">100<span>%</span></div>
+          </div>
+
+          <!-- Khối nhỏ 2: Tùy biến hiệu ứng -->
+          <div class="bento-card bento-card-small">
+            <div class="bento-header">
+              <span class="bento-tag">Chuyển cảnh</span>
+              <h3>6 Hiệu ứng có sẵn</h3>
+              <p>Chọn ngay Genie, Ink, Cinematic, Quét chéo hay Tan ô lưới trực tiếp từ menu chuột phải.</p>
+            </div>
+            <div class="bento-metric">6<span> Kiểu</span></div>
+          </div>
+
+          <!-- Khối nhỏ 3: Bảng cài đặt & Ngôn ngữ -->
+          <div class="bento-card bento-card-small">
+            <div class="bento-header">
+              <span class="bento-tag">Cá nhân hóa</span>
+              <h3>Settings chi tiết</h3>
+              <p>Chỉnh tốc độ chuyển ảnh, giao diện kính mờ và hỗ trợ sẵn hơn 10 ngôn ngữ khác nhau.</p>
+            </div>
+            <div class="bento-metric">10+<span> Thứ tiếng</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    </section>
+
+    <!-- 5. SỰ RIÊNG TƯ & AN TOÀN -->
+    <section id="privacy" class="section section-privacy bg-alt">
+      <div class="section-content text-center">
+        <h3 class="typography-eyebrow-reduced" data-i18n="privacy_eyebrow">An toàn tuyệt đối</h3>
+        <h2 style="font-size: clamp(34px, 4vw, 48px); margin-bottom: 12px;" data-i18n="privacy_title">Sự riêng tư của bạn là trên hết.</h2>
+        <p style="font-size: 16px; color: var(--text-secondary); max-width: 680px; margin: 0 auto;" data-i18n="privacy_intro">
+          WBB hoạt động 100% độc lập ngoại tuyến trên máy tính của bạn. Không gửi dữ liệu, không theo dõi và hoàn toàn tôn trọng không gian làm việc cá nhân.
+        </p>
+
+        <div class="privacy-grid">
+          <div class="privacy-card">
+            <div class="privacy-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3 data-i18n="priv_card1_title">Hoạt động Offline 100%</h3>
+            <p data-i18n="priv_card1_desc">Ứng dụng không hề có kết nối mạng ngầm. Mọi hình ảnh bạn thêm vào đều được lưu trữ hoàn toàn cục bộ trên ổ cứng của bạn.</p>
+          </div>
+          <div class="privacy-card">
+            <div class="privacy-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+              </svg>
+            </div>
+            <h3 data-i18n="priv_card2_title">Không thu thập dữ liệu</h3>
+            <p data-i18n="priv_card2_desc">Không theo dõi hành vi, không gắn mã phân tích (telemetry), không gửi bất kỳ thông tin cá nhân nào về máy chủ.</p>
+          </div>
+          <div class="privacy-card">
+            <div class="privacy-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 data-i18n="priv_card3_title">Mã nguồn mở minh bạch</h3>
+            <p data-i18n="priv_card3_desc">Toàn bộ mã nguồn WBB và bộ cài đặt đều được công khai minh bạch trên GitHub để cộng đồng cùng kiểm tra và đóng góp.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. MỘT LỜI NHẮN CHÂN THÀNH TỪ TÁC GIẢ -->
+    <section class="section section-note bg-fill">
+      <div class="section-content">
+        <div class="note-card">
+          <div class="note-header">
+            <img src="assets/app-icon.ico" alt="Avatar" class="note-author-avatar" />
+            <div>
+              <div class="note-author-name">Một lời nhắn chân thành</div>
+              <div class="note-author-sub">Gửi đến bạn, người đang chuẩn bị tải WBB</div>
+            </div>
+          </div>
+          <div class="note-body">
+            <p>
+              Chào bạn, dự án WBB ra đời đơn giản từ một mong muốn rất nhỏ: mình muốn góc trên màn hình Windows bớt tẻ nhạt, có một thanh điều khiển tai thỏ vừa đẹp như điện thoại đời mới, vừa giúp đổi hình nền thật mượt mà mắt nhìn không bị giật hay nhàm chán.
+            </p>
+            <p>
+              Mình biết nỗi sợ lớn nhất của mọi người khi cài thêm app trang trí là nặng máy, nóng quạt và dính phần mềm rác. Vì thế, mình đã dành rất nhiều thời gian tự tay viết từng dòng code, tối ưu để ứng dụng nhẹ nhất có thể — dung lượng chưa tới 1 MB, ăn vài MB RAM và trả lại 100% sức mạnh cho máy khi bạn làm việc.
+            </p>
+            <p>
+              Đây là một dự án hoàn toàn miễn phí, làm vì đam mê và tặng cho cộng đồng. Hy vọng mỗi lần ngồi vào bàn làm việc, nhìn chiếc màn hình đổi ảnh lượn sóng êm ru sẽ đem lại cho bạn một chút cảm hứng và niềm vui nho nhỏ trong ngày. Cảm ơn bạn vì đã tin tưởng và trải nghiệm WBB!
+            </p>
+            <div class="note-signature">
+              — Người phát triển WBB (DRBR)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. CÂU HỎI THƯỜNG GẶP (FAQ) -->
+    <section id="faq" class="section section-faq bg-alt">
+      <div class="section-content">
+        <div class="text-center">
+          <h3 class="typography-eyebrow-reduced" data-i18n="faq_eyebrow">Giải đáp thắc mắc</h3>
+          <h2 style="font-size: clamp(34px, 4vw, 48px); margin-bottom: 12px;" data-i18n="faq_title">Câu hỏi thường gặp</h2>
+          <p style="font-size: 16px; color: var(--text-secondary); max-width: 600px; margin: 0 auto;" data-i18n="faq_intro">
+            Những điều người dùng hay hỏi nhất về WBB trước và trong khi sử dụng.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item">
+            <details open>
+              <summary data-i18n="faq_q1">WBB có làm chậm máy hay hao pin laptop không?</summary>
+              <div class="faq-content" data-i18n="faq_a1">
+                Hoàn toàn không. WBB được code tối ưu bằng ngôn ngữ C++ thuần cực kỳ nhẹ. Khi bạn không đổi ảnh nền, app tự động đi vào trạng thái ngủ đông (0% CPU) và chỉ chiếm vài MB RAM, máy văn phòng hay laptop đều chạy cực kỳ mát mẻ.
+              </div>
+            </details>
+          </div>
+
+          <div class="faq-item">
+            <details>
+              <summary data-i18n="faq_q2">Máy tính của tôi có cần quyền Admin để cài đặt không?</summary>
+              <div class="faq-content" data-i18n="faq_a2">
+                Không cần. Bộ cài đặt <b>WbbSetup.exe</b> chạy trực tiếp trong thư mục người dùng cá nhân, không can thiệp sâu vào file hệ thống Windows nên bạn không cần quyền Quản trị viên (Administrator).
+              </div>
+            </details>
+          </div>
+
+          <div class="faq-item">
+            <details>
+              <summary data-i18n="faq_q3">Làm sao để thêm hình nền riêng của mình vào WBB?</summary>
+              <div class="faq-content" data-i18n="faq_a3">
+                Rất đơn giản! Bạn chỉ cần nắm chuột kéo thả bất kỳ file ảnh nào (JPG, PNG, GIF...) vào thanh Dynamic Island hoặc bấm mũi tên <b>[ ⌄ ]</b> mở thư viện và bấm dấu <b>+</b> để chọn thư mục ảnh.
+              </div>
+            </details>
+          </div>
+
+          <div class="faq-item">
+            <details>
+              <summary data-i18n="faq_q4">Nếu không thích nữa, tôi gỡ cài đặt có bị rác máy không?</summary>
+              <div class="faq-content" data-i18n="faq_a4">
+                WBB có tính năng gỡ cài đặt sạch sẽ 100%. Bạn chỉ cần vào cài đặt hoặc chạy lại file gỡ là toàn bộ file và lối tắt sẽ biến mất hoàn toàn, trả lại nguyên vẹn màn hình máy tính ban đầu.
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= CHÂN TRANG ================= -->
+  <footer id="footer" class="footer" role="contentinfo" aria-labelledby="footer-label">
+    <div class="footer-content">
+      <h2 class="footer-label" id="footer-label">Chân trang WBB</h2>
+
+      <section class="footer-sosumi">
+        <ul>
+          <li data-i18n="footer_notice">Hỗ trợ tốt nhất trên máy tính chạy Windows 10 và Windows 11. Tự động hiển thị sắc nét trên cả màn hình độ nét cao lẫn màn hình gaming tần số quét cao.</li>
+        </ul>
+      </section>
+
+      <div class="footer-breadcrumbs">
+        <a href="#" style="display: inline-flex; align-items: center; gap: 6px;">
+          <img src="assets/app-icon.ico" width="16" height="16" alt="Icon" style="border-radius: 3px;" />
+          <span>WBB</span>
+        </a>
+        <span class="footer-breadcrumbs-sep">›</span>
+        <span data-i18n="footer_crumb">Tai thỏ Dynamic Island cho Windows</span>
+      </div>
+
+      <nav class="footer-directory" aria-label="Mục lục chân trang">
+        <div class="footer-directory-column" style="grid-column: 1 / -1; max-width: 600px;">
+          <div class="footer-directory-column-section">
+            <h3 class="footer-directory-column-section-title" data-i18n="footer_download_col">Khám phá & Tải về</h3>
+            <ul class="footer-directory-column-section-list" style="display: flex; flex-wrap: wrap; gap: 12px 24px;">
+              <li class="footer-directory-column-section-item"><a class="footer-directory-column-section-link" href="WbbSetup.exe" download="WbbSetup.exe" style="color: var(--accent-blue); font-weight: 600;" data-i18n="footer_setup_link">Tải bộ cài đặt (WbbSetup.exe)</a></li>
+              <li class="footer-directory-column-section-item"><a class="footer-directory-column-section-link" href="#overview" data-i18n="nav_overview">Giới thiệu</a></li>
+              <li class="footer-directory-column-section-item"><a class="footer-directory-column-section-link" href="#features" data-i18n="nav_features">Tính năng</a></li>
+              <li class="footer-directory-column-section-item"><a class="footer-directory-column-section-link" href="#customization" data-i18n="nav_custom">Tùy biến</a></li>
+              <li class="footer-directory-column-section-item"><a class="footer-directory-column-section-link" href="#privacy" data-i18n="nav_privacy">Sự riêng tư</a></li>
+              <li class="footer-directory-column-section-item"><a class="footer-directory-column-section-link" href="#faq" data-i18n="nav_faq">Câu hỏi thường gặp</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <section class="footer-mini">
+        <div class="footer-mini-news">
+          <div class="copy" data-i18n="footer_copy">
+            WBB: biến góc trên màn hình Windows thành một điểm nhấn vui mắt và tiện lợi.
+          </div>
+          <div class="content">
+            <div class="color-scheme-toggle" role="radiogroup" aria-label="Chọn giao diện trang web">
+              <label data-color-scheme-option="light">
+                <input type="radio" name="color-scheme" value="light" autocomplete="off" />
+                <div class="text" data-i18n="theme_light">Sáng</div>
+              </label>
+              <label data-color-scheme-option="dark">
+                <input type="radio" name="color-scheme" value="dark" autocomplete="off" />
+                <div class="text" data-i18n="theme_dark">Tối</div>
+              </label>
+              <label data-color-scheme-option="auto">
+                <input type="radio" name="color-scheme" value="auto" autocomplete="off" />
+                <div class="text" data-i18n="theme_auto">Theo máy</div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-mini-legal">
+          <div class="footer-mini-legal-links">
+            <a class="footer-mini-legal-link" href="WbbSetup.exe" download="WbbSetup.exe" data-i18n="footer_legal_download">Tải bộ cài đặt (.exe)</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // Dark / Light Theme logic
+      const meta = document.querySelector('meta[name="color-scheme"]');
+      const radios = document.querySelectorAll('.color-scheme-toggle input[name="color-scheme"]');
+
+      function syncToggleUI() {
+        let stored = null;
+        try {
+          stored = localStorage.getItem("color-scheme");
+        } catch {}
+        const mode = stored === "light" || stored === "dark" ? stored : "auto";
+        meta.content = mode === "auto" ? "light dark" : mode;
+        radios.forEach((r) => {
+          r.checked = r.value === mode;
+        });
+      }
+
+      radios.forEach((radio) => {
+        radio.addEventListener("change", (e) => {
+          const val = e.target.value;
+          try {
+            if (val === "auto") {
+              localStorage.removeItem("color-scheme");
+            } else {
+              localStorage.setItem("color-scheme", val);
+            }
+          } catch {}
+          syncToggleUI();
+        });
+      });
+
+      window.addEventListener("storage", (e) => {
+        if (e.key === "color-scheme" || e.key === null) {
+          syncToggleUI();
+        }
+      });
+
+      syncToggleUI();
+
+      // Video Animation Controls
+      const animButtons = document.querySelectorAll('.animation-btn');
+      const animVideo = document.getElementById('anim-video');
+      const animHeadline = document.getElementById('anim-headline');
+      const animDesc = document.getElementById('anim-desc');
+
+      const animationSources = [
+        'assets/animations/cinematic.mp4',
+        'assets/animations/genie.mp4',
+        'assets/animations/ink.mp4',
+        'assets/animations/diagonal.mp4',
+        'assets/animations/grid.mp4',
+        'random'
+      ];
+
+      function switchAnimation(index) {
+        let src = animationSources[index];
+        if (!src) return;
+
+        if (src === 'random') {
+          const randIdx = Math.floor(Math.random() * (animationSources.length - 1));
+          src = animationSources[randIdx];
+        }
+
+        animVideo.src = src;
+        animVideo.currentTime = 0;
+        animVideo.play().catch(() => {});
+      }
+
+      animButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          animButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const name = btn.getAttribute('data-name');
+          const isVi = document.documentElement.lang === 'vi';
+          const desc = isVi ? btn.getAttribute('data-desc-vi') : btn.getAttribute('data-desc-en');
+          const idx = parseInt(btn.getAttribute('data-index'), 10);
+
+          if (animHeadline) animHeadline.textContent = isVi ? `Hiệu ứng ${name}` : `${name} Effect`;
+          if (animDesc) animDesc.textContent = desc;
+
+          switchAnimation(idx);
+        });
+      });
+
+      if ('IntersectionObserver' in window && animVideo) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              animVideo.play().catch(() => {});
+            } else {
+              animVideo.pause();
+            }
+          });
+        }, { threshold: 0.25 });
+        observer.observe(animVideo);
+      }
+
+      // ================= 10 THỨ TIẾNG (i18n) =================
+      const translations = {
+        vi: {
+          label: "Tiếng Việt",
+          nav_overview: "Giới thiệu",
+          nav_features: "Tính năng",
+          nav_custom: "Tùy biến",
+          nav_perf: "Độ mượt & Nhẹ máy",
+          nav_shortcuts: "Cách bấm nhanh",
+          nav_download: "Tải về cài đặt",
+          hero_intro: "Màn hình máy tính của bạn, từ nay đã thú vị hơn. Trải nghiệm thanh Dynamic Island như trên điện thoại cao cấp: đổi hình nền lướt sóng siêu mượt, tự động né cửa sổ không sợ che mất việc, dùng nhẹ tênh không tốn pin hay nóng máy.",
+          hero_btn: "Tải về cho Windows (WbbSetup.exe)",
+          hero_sub: "Bộ cài đặt tự động siêu nhẹ (chưa tới 1 MB) • Miễn phí • Dành cho Windows 10 & 11",
+          callout_title: "Bộ cài đặt tự động riêng • Cài dễ, gỡ sạch, không rác máy",
+          callout_desc: "Tự động khởi động cùng máy tính mỗi khi bạn bật nguồn, có sẵn lối tắt ngoài màn hình chính. Bạn có thể chọn thư mục lưu theo ý muốn và có nút gỡ cài đặt sạch bóng bất cứ khi nào bạn không dùng nữa.",
+          callout_more: "Xem chi tiết độ nhẹ máy",
+          anim_eyebrow: "Đổi hình nền nghệ thuật",
+          anim_title: "Biến hóa màn hình với 6 kiểu chuyển cảnh đẹp mắt",
+          anim_desc_default: "Không còn cảnh hình nền đổi cái bụp nhàm chán. Mỗi lần bấm chuyển ảnh, màn hình của bạn sẽ biến ảo mượt mà với hiệu ứng sóng lượn Genie, vết mực lan tỏa hay những chuyển động điện ảnh tinh tế.",
+          dodge_eyebrow: "Biết điều và tinh tế",
+          dodge_title: "Tự động né ra khi bạn đang làm việc",
+          dodge_desc: "Nỗi sợ lớn nhất của các ứng dụng trang trí là che mất nút tắt, nút thu nhỏ hay các tab trình duyệt. WBB rất thông minh: hễ bạn kéo cửa sổ làm việc lên sát mép trên, nó sẽ tự động thu nhỏ lại thành một vệt mỏng hoặc tự né sang chỗ khác để nhường chỗ cho bạn làm việc.",
+          custom_headline: "Tùy biến linh hoạt theo cách của bạn",
+          custom_intro: "Nhấp chuột phải vào biểu tượng WBB ở khay đồng hồ để tinh chỉnh nhanh cách tai thỏ hoạt động trên màn hình máy tính của bạn.",
+          menu_center: "Center at the top",
+          menu_topmost: "Always on top",
+          menu_hover: "Expand on hover",
+          menu_collapse: "Collapse when covered",
+          menu_effects: "Effects",
+          menu_settings: "Settings",
+          menu_exit: "Exit Wbb",
+          menu_tray_hint: "Bấm chuột phải vào biểu tượng WBB cạnh đồng hồ.",
+          custom_pos_title: "Cố định giữa mép trên & Luôn nổi",
+          custom_pos_desc: "Center at the top & Always on top: Giữ tai thỏ luôn nằm ngay ngắn chính giữa mép trên màn hình và sẵn sàng cho bạn điều khiển bất cứ lúc nào.",
+          custom_hover_title: "Mở rộng khi rê chuột (Expand on hover)",
+          custom_hover_desc: "Chỉ cần đưa con trỏ chuột lướt nhẹ qua tai thỏ, WBB sẽ tự bung mở mượt mà để bạn chọn hình nền và điều chỉnh.",
+          custom_collapse_title: "Tự né khi bị che khuất (Collapse when covered)",
+          custom_collapse_desc: "Mỗi khi có cửa sổ làm việc chạm đến mép trên, WBB sẽ tự thu nhỏ thành một vệt mỏng để không vướng víu nút đóng hay tab trình duyệt.",
+          custom_effects_title: "Chọn hiệu ứng & Cài đặt (Effects & Settings)",
+          custom_effects_desc: "Lựa chọn trực tiếp hiệu ứng chuyển ảnh (Genie, Ink, Cinematic...) và mở bảng cài đặt để chỉnh ngôn ngữ, độ mờ hoặc thoát ứng dụng hoàn toàn.",
+          perf_eyebrow: "Độ mượt mà",
+          perf_title: "Siêu nhẹ, không lo đứng máy",
+          perf_intro: "Khác với nhiều app trang trí làm nặng máy và ngốn pin, WBB được tối ưu cực kỳ gọn gàng:",
+          perf_list: "• <b>Ăn cực ít RAM:</b> Chỉ khoảng vài MB khi ở trạng thái không chuyển cảnh, mở máy cả ngày không xi-nhê.<br>• <b>Không tốn CPU:</b> Khi bạn không dùng chế độ tự động thu nhỏ, app tự nghỉ ngơi hoàn toàn.<br>• <b>Siêu tiết kiệm:</b> Chỉ tốn dưới 1% CPU khi ở chế độ tự động thu nhỏ.<br>• <b>Dung lượng hạt tiêu:</b> Bộ cài đặt chưa đến 1 MB, tải 1 giây là xong.",
+          sc_eyebrow: "Tiện lợi",
+          sc_title: "Thao tác nhanh, dễ dàng sử dụng",
+          sc_intro: "Điều khiển và đổi hình nền tức thì ngay trên màn hình:",
+          sc_list: "• <code>Windows + Alt + W</code> : Đổi sang hình nền tiếp theo<br>• Nhấn nút mũi tên <b>[ ⌄ ]</b> để mở thư viện ảnh bạn đã lưu<br>• Nhấn <b>&lt;</b> và <b>&gt;</b> để chuyển đổi qua lại giữa các hình nền<br>• Kéo thả bất kỳ tấm ảnh nào từ máy tính vào để đặt làm hình nền tức thì.",
+          footer_notice: "Hỗ trợ tốt nhất trên máy tính chạy Windows 10 và Windows 11. Tự động hiển thị sắc nét trên cả màn hình độ nét cao lẫn màn hình gaming tần số quét cao.",
+          footer_crumb: "Tai thỏ Dynamic Island cho Windows",
+          footer_download_col: "Tải về",
+          footer_setup_link: "Tải bộ cài đặt (WbbSetup.exe)",
+          footer_share_col: "Góp ý & Chia sẻ",
+          footer_issues: "Báo lỗi nếu gặp trục trặc",
+          footer_copy: "WBB: biến góc trên màn hình Windows thành một điểm nhấn vui mắt và tiện lợi.",
+          footer_legal_download: "Tải bộ cài đặt (.exe)",
+          theme_light: "Sáng",
+          theme_dark: "Tối",
+          theme_auto: "Theo máy"
+        },
+        en: {
+          label: "English",
+          nav_overview: "Overview",
+          nav_features: "Features",
+          nav_custom: "Customization",
+          nav_perf: "Performance",
+          nav_shortcuts: "Shortcuts",
+          nav_download: "Download Setup",
+          hero_intro: "Bring your Windows desktop to life. Experience a sleek Dynamic Island with fluid wallpaper wave transitions, smart window dodging, and ultra-lightweight performance under 20MB RAM.",
+          hero_btn: "Download for Windows (WbbSetup.exe)",
+          hero_sub: "Ultra-compact standalone installer (< 1 MB) • Free • For Windows 10 & 11",
+          callout_title: "Custom standalone installer • Clean setup, effortless removal",
+          callout_desc: "Auto-starts with Windows, creates a neat desktop shortcut, lets you choose custom install folders, and uninstalls cleanly with zero leftovers.",
+          callout_more: "See performance details",
+          anim_eyebrow: "Artistic Wallpaper Engine",
+          anim_title: "Transform your screen with 6 smooth transition effects",
+          anim_desc_default: "No more jarring instant wallpaper cuts. Enjoy smooth Genie waves, spreading ink, and cinematic camera zooms every time you switch wallpapers.",
+          dodge_eyebrow: "Smart & Non-Intrusive",
+          dodge_title: "Automatically ducks out of your way while working",
+          dodge_desc: "Never worry about hiding browser tabs or title bar buttons. When any active app touches the top edge, WBB docks into a thin slit or gently glides away.",
+          custom_headline: "Tailor WBB to your workflow",
+          custom_intro: "Right-click the WBB icon in the system tray, right next to the clock. Tune how the island behaves on your display.",
+          menu_center: "Center at the top",
+          menu_topmost: "Always on top",
+          menu_hover: "Expand on hover",
+          menu_collapse: "Collapse when covered",
+          menu_effects: "Effects",
+          menu_settings: "Settings",
+          menu_exit: "Exit Wbb",
+          menu_tray_hint: "Right-click the WBB icon in the system tray.",
+          custom_pos_title: "Center at the top & Always on top",
+          custom_pos_desc: "Keeps the island perfectly centered at the top edge of your screen and readily accessible at all times.",
+          custom_hover_title: "Expand on hover",
+          custom_hover_desc: "Simply move your cursor over the notch to smoothly expand the gallery and browse wallpapers.",
+          custom_collapse_title: "Collapse when covered",
+          custom_collapse_desc: "Whenever a maximized app window touches the top edge, WBB automatically docks into an ultra-thin line to keep browser tabs and buttons fully visible.",
+          custom_effects_title: "Effects & Settings",
+          custom_effects_desc: "Select wallpaper transitions directly (Genie, Ink, Cinematic...) and configure appearance, languages, or exit the app.",
+          perf_eyebrow: "Efficiency",
+          perf_title: "Ultra lightweight, zero lag",
+          perf_intro: "Unlike heavy Electron utilities, WBB is built natively from scratch:",
+          perf_list: "• <b>Minimal RAM:</b> Only a few MBs when idle, runs quietly in the background all day.<br>• <b>0% CPU:</b> Completely sleeps when auto-docking is inactive.<br>• <b>Under 1% CPU:</b> Barely registers even in smart docking mode.<br>• <b>Sub-1MB file size:</b> Downloads in less than a second.",
+          sc_eyebrow: "Convenience",
+          sc_title: "Quick controls right at your fingertips",
+          sc_intro: "Change and manage your desktop wallpapers in a snap:",
+          sc_list: "• <code>Windows + Alt + W</code> : Jump to the next wallpaper<br>• Click the <b>[ ⌄ ]</b> arrow to expand your wallpaper gallery<br>• Click <b>&lt;</b> and <b>&gt;</b> to browse through images<br>• Drag and drop any image onto the island to set it instantly.",
+          footer_notice: "Optimized for Windows 10 and Windows 11. Crisp on both High DPI monitors and high refresh rate displays.",
+          footer_crumb: "Dynamic Island for Windows",
+          footer_download_col: "Download",
+          footer_setup_link: "Download Setup (WbbSetup.exe)",
+          footer_share_col: "Community",
+          footer_issues: "Report an issue",
+          footer_copy: "WBB: a living notch for your Windows desktop.",
+          footer_legal_download: "Download Setup (.exe)",
+          theme_light: "Light",
+          theme_dark: "Dark",
+          theme_auto: "Auto"
+        },
+        zh: {
+          label: "中文",
+          nav_overview: "概览",
+          nav_features: "特性",
+          nav_perf: "性能",
+          nav_shortcuts: "快捷操作",
+          nav_download: "下载安装包",
+          hero_intro: "让你的 Windows 屏幕更加灵动有趣。体验像旗舰手机一般的灵动岛：波浪式平滑壁纸切换、智能避让窗口，极度轻巧不卡顿。",
+          hero_btn: "下载 Windows 安装包 (WbbSetup.exe)",
+          hero_sub: "独立极简安装包（小于 1 MB）• 免费开源 • 支持 Windows 10 & 11",
+          callout_title: "专属安装程序 • 轻松安装，干净卸载无残留",
+          callout_desc: "开机自启、桌面快捷方式、自选安装路径，随时干净卸载不留任何垃圾文件。",
+          callout_more: "查看性能表现",
+          anim_eyebrow: "壁纸艺术切换",
+          anim_title: "6 种丝滑切换动效，点亮桌面每一刻",
+          anim_desc_default: "告别生硬的壁纸切换。每次更换壁纸，屏幕都将呈现如同波浪起伏、墨水蔓延一般的优雅动画。",
+          dodge_eyebrow: "贴心智能",
+          dodge_title: "办公时自动避让，不挡视线",
+          dodge_desc: "窗口移至顶部时，灵动岛自动收缩为极细细条，绝不遮挡网页标签与关闭按钮。",
+          perf_eyebrow: "流畅体验",
+          perf_title: "极低资源占用，丝毫不卡机",
+          perf_intro: "拒绝笨重的臃肿软件，WBB 原生轻量打造：",
+          perf_list: "• <b>极少内存：</b> 静止时仅占用数兆内存。<br>• <b>0% CPU：</b> 闲置时彻底休眠。<br>• <b>极简体积：</b> 安装包不足 1 MB，瞬间完成下载。",
+          sc_eyebrow: "便捷操作",
+          sc_title: "随手切换，轻松掌控",
+          sc_intro: "无需繁琐操作，随手掌控桌面壁纸：",
+          sc_list: "• <code>Win + Alt + W</code> : 切换下一张壁纸<br>• 点击 <b>[ ⌄ ]</b> 下拉箭头打开壁纸库<br>• 点击 <b>&lt;</b> 和 <b>&gt;</b> 左右挑选<br>• 拖拽任意图片到顶部即可一键设为壁纸。",
+          footer_notice: "完美支持 Windows 10 与 Windows 11 高刷新率屏幕。",
+          footer_crumb: "Windows 灵动岛",
+          footer_download_col: "下载",
+          footer_setup_link: "下载安装包 (WbbSetup.exe)",
+          footer_share_col: "社区与反馈",
+          footer_issues: "反馈问题与建议",
+          footer_copy: "WBB：为你的 Windows 桌面增添生机与便捷。",
+          footer_legal_download: "下载安装包 (.exe)",
+          theme_light: "浅色",
+          theme_dark: "深色",
+          theme_auto: "跟随系统"
+        },
+        ja: {
+          label: "日本語",
+          nav_overview: "概要",
+          nav_features: "機能",
+          nav_perf: "パフォーマンス",
+          nav_shortcuts: "操作方法",
+          nav_download: "インストーラー取得",
+          hero_intro: "Windows の画面がもっと楽しく、美しく。スマートフォンでおなじみのダイナミックアイランドを PC に。なめらかな壁紙切り替えと超軽量動作を実現。",
+          hero_btn: "Windows 版ダウンロード (WbbSetup.exe)",
+          hero_sub: "1 MB 未満の超軽量インストーラー • 完全無料 • Windows 10 & 11 対応",
+          callout_title: "専用インストーラー • 簡単導入、ゴミを残さず完全削除",
+          callout_desc: "Windows 起動時の自動実行やショートカット作成に対応。不要になったらいつでもキレイにアンインストールできます。",
+          callout_more: "詳細な動作環境を見る",
+          anim_eyebrow: "壁紙エフェクト",
+          anim_title: "6 種類の美しいトランジションで画面を演出",
+          anim_desc_default: "一瞬で切り替わる味気ない壁紙変更はもう終わり。滑らかな波打ちやインクの広がりで、画面全体を鮮やかに彩ります。",
+          dodge_eyebrow: "スマート回避",
+          dodge_title: "作業の邪魔をしない自動ドッキング機能",
+          dodge_desc: "ブラウザのタブや閉じるボタンを覆い隠す心配はありません。ウィンドウが近づくと自動的に細く格納されます。",
+          perf_eyebrow: "快適な動作",
+          perf_title: "超軽量・低負荷設計",
+          perf_intro: "重いツールとは一線を画す、ネイティブ仕立ての省電力動作：",
+          perf_list: "• <b>省メモリ：</b> 待機時はわずか数 MB のメモリ消費。<br>• <b>CPU 負荷 0%：</b> 画面操作がない時は完全休眠。<br>• <b>極小サイズ：</b> 1 秒でダウンロード完了。",
+          sc_eyebrow: "便利なショートカット",
+          sc_title: "手軽な操作ですぐに壁紙変更",
+          sc_intro: "キーボードやマウス操作でスマートに切り替え：",
+          sc_list: "• <code>Win + Alt + W</code> : 次の壁紙へ切り替え<br>• <b>[ ⌄ ]</b> をクリックしてライブラリ展開<br>• <b>&lt;</b> と <b>&gt;</b> で壁紙を選択<br>• 画像を直接ドラッグ＆ドロップして即座に壁紙設定。",
+          footer_notice: "Windows 10 および 11 の高解像度・高リフレッシュレート環境に最適化されています。",
+          footer_crumb: "Windows 向けダイナミックアイランド",
+          footer_download_col: "ダウンロード",
+          footer_setup_link: "インストーラー (WbbSetup.exe)",
+          footer_share_col: "コミュニティ",
+          footer_issues: "不具合の報告",
+          footer_copy: "WBB: デスクトップの最上部に、生き生きとしたアクセントを。",
+          footer_legal_download: "インストーラー (.exe)",
+          theme_light: "ライト",
+          theme_dark: "ダーク",
+          theme_auto: "自動"
+        },
+        ko: {
+          label: "한국어",
+          nav_overview: "개요",
+          nav_features: "기능",
+          nav_perf: "성능",
+          nav_shortcuts: "단축키",
+          nav_download: "설치 파일 다운로드",
+          hero_intro: "Windows 화면이 더욱 생동감 있고 편리해집니다. 스마트폰의 다이내믹 아일랜드처럼 부드러운 배경화면 전환과 스마트 창 회피 기능을 초경량으로 경험해 보세요.",
+          hero_btn: "Windows용 다운로드 (WbbSetup.exe)",
+          hero_sub: "1MB 미만의 초경량 설치 프로그램 • 무료 • Windows 10 & 11 지원",
+          callout_title: "자체 설치 프로그램 • 손쉬운 설치 및 깔끔한 제거",
+          callout_desc: "부팅 시 자동 시작, 바탕화면 바로가기 생성, 원할 때 찌꺼기 파일 없이 완벽한 삭제를 지원합니다.",
+          callout_more: "성능 세부정보 보기",
+          anim_eyebrow: "배경화면 애니메이션",
+          anim_title: "6가지의 아름다운 화면 전환 효과",
+          anim_desc_default: "단조로운 배경화면 변경은 이제 그만. 지니 파동과 잉크 번짐 효과로 부드럽고 우아하게 화면을 채웁니다.",
+          dodge_eyebrow: "스마트 감지",
+          dodge_title: "작업 중에는 방해 없이 자동으로 비켜줍니다",
+          dodge_desc: "작업 창이 상단에 닿으면 얇은 바로 도킹되어 탭이나 닫기 버튼을 절대 가리지 않습니다.",
+          perf_eyebrow: "가벼운 성능",
+          perf_title: "렉 없는 초경량 구동",
+          perf_intro: "무거운 프로그램과 달리 리소스를 거의 차지하지 않습니다:",
+          perf_list: "• <b>최소 RAM:</b> 대기 시 수 MB 수준으로 종일 켜두어도 부담 제로.<br>• <b>0% CPU:</b> 대기 상태 시 완전 절전.<br>• <b>초소형 용량:</b> 1초 만에 다운로드 완료.",
+          sc_eyebrow: "간편한 조작",
+          sc_title: "마우스와 키보드로 편리한 조작",
+          sc_intro: "화면 위에서 손쉽게 배경화면을 제어하세요:",
+          sc_list: "• <code>Win + Alt + W</code> : 다음 배경화면으로 전환<br>• <b>[ ⌄ ]</b> 클릭하여 저장된 갤러리 열기<br>• <b>&lt;</b> 와 <b>&gt;</b> 클릭으로 사진 넘기기<br>• 이미지 파일을 끌어다 놓으면 즉시 배경화면 설정.",
+          footer_notice: "Windows 10 및 11 고주사율 모니터에 완벽 대응합니다.",
+          footer_crumb: "Windows용 다이내믹 아일랜드",
+          footer_download_col: "다운로드",
+          footer_setup_link: "설치 파일 (WbbSetup.exe)",
+          footer_share_col: "커뮤니티",
+          footer_issues: "문제 보고 및 제안",
+          footer_copy: "WBB: Windows 데스크톱에 생기를 불어넣는 스마트 노치.",
+          footer_legal_download: "설치 파일 (.exe)",
+          theme_light: "라이트",
+          theme_dark: "다크",
+          theme_auto: "시스템 설정"
+        },
+        fr: {
+          label: "Français",
+          nav_overview: "Présentation",
+          nav_features: "Fonctions",
+          nav_perf: "Performances",
+          nav_shortcuts: "Raccourcis",
+          nav_download: "Télécharger",
+          hero_intro: "Donnez vie au haut de votre écran Windows. Une Dynamic Island élégante avec transitions de fond d'écran fluides, esquive intelligente des fenêtres et légèreté totale.",
+          hero_btn: "Télécharger pour Windows (WbbSetup.exe)",
+          hero_sub: "Installateur autonome ultra léger (< 1 Mo) • Gratuit • Windows 10 & 11",
+          callout_title: "Installateur dédié • Installation facile, désinstallation propre",
+          callout_desc: "Démarrage automatique, raccourci bureau, choix du dossier et désinstallation sans laisser aucun résidu.",
+          callout_more: "Voir les performances",
+          anim_eyebrow: "Moteur visuel",
+          anim_title: "6 superbes effets de transition de fond d'écran",
+          anim_desc_default: "Fini les changements brutaux. Profitez d'effets d'ondulation Genie ou d'encre fluide à chaque changement d'image.",
+          dodge_eyebrow: "Discret et intelligent",
+          dodge_title: "S'efface automatiquement pendant que vous travaillez",
+          dodge_desc: "Ne masque jamais les onglets ni les boutons de fermeture. Se réduit discrètement au contact d'une fenêtre.",
+          perf_eyebrow: "Légèreté",
+          perf_title: "Ultra fluide, ne ralentit pas le PC",
+          perf_intro: "Conçu pour préserver vos ressources système :",
+          perf_list: "• <b>RAM minimale :</b> Moins de quelques Mo au repos.<br>• <b>0% CPU :</b> Sommeil complet hors animation.<br>• <b>Taille plume :</b> Moins de 1 Mo, téléchargé en une seconde.",
+          sc_eyebrow: "Pratique",
+          sc_title: "Commandes rapides à portée de main",
+          sc_intro: "Contrôlez vos fonds d'écran en un instant :",
+          sc_list: "• <code>Win + Alt + W</code> : Image suivante<br>• Cliquez sur <b>[ ⌄ ]</b> pour ouvrir la galerie<br>• Cliquez sur <b>&lt;</b> et <b>&gt;</b> pour faire défiler<br>• Glissez-déposez n'importe quelle photo pour l'appliquer.",
+          footer_notice: "Optimisé pour Windows 10 et 11 avec écrans haute résolution.",
+          footer_crumb: "Dynamic Island pour Windows",
+          footer_download_col: "Téléchargement",
+          footer_setup_link: "Installateur (WbbSetup.exe)",
+          footer_share_col: "Partage",
+          footer_issues: "Signaler un bogue",
+          footer_copy: "WBB : une encoche vivante pour votre bureau Windows.",
+          footer_legal_download: "Installateur (.exe)",
+          theme_light: "Clair",
+          theme_dark: "Sombre",
+          theme_auto: "Système"
+        },
+        de: {
+          label: "Deutsch",
+          nav_overview: "Übersicht",
+          nav_features: "Funktionen",
+          nav_perf: "Leistung",
+          nav_shortcuts: "Tastenkürzel",
+          nav_download: "Herunterladen",
+          hero_intro: "Bringen Sie Leben auf Ihren Windows-Desktop. Eine elegante Dynamic Island mit flüssigen Hintergrundbild-Übergängen, intelligenter Fenster-Ausweichung und extrem geringem Ressourcenverbrauch.",
+          hero_btn: "Für Windows herunterladen (WbbSetup.exe)",
+          hero_sub: "Kompakter Installer (< 1 MB) • Kostenlos • Windows 10 & 11",
+          callout_title: "Eigener Installer • Einfache Einrichtung, saubere Deinstallation",
+          callout_desc: "Autostart mit Windows, Desktop-Verknüpfung und rückstandslose Deinstallation auf Knopfdruck.",
+          callout_more: "Leistungsdetails ansehen",
+          anim_eyebrow: "Hintergrund-Effekte",
+          anim_title: "6 flüssige Übergangseffekte für jeden Wechsel",
+          anim_desc_default: "Keine abrupten Bildwechsel mehr: Sanfte Genie-Wellen und fließende Tinten-Animationen verzaubern Ihren Bildschirm.",
+          dodge_eyebrow: "Intelligent & dezent",
+          dodge_title: "Weicht Fenstern automatisch aus",
+          dodge_desc: "Verdeckt keine Browser-Tabs oder Schaltflächen mehr. Dockt sofort als schmaler Streifen an, wenn sich ein Fenster nähert.",
+          perf_eyebrow: "Effizienz",
+          perf_title: "Ultra-leicht, null Verzögerung",
+          perf_intro: "Ressourcenschonend und native Performance pur :",
+          perf_list: "• <b>Minimaler RAM :</b> Nur wenige MB im Ruhezustand.<br>• <b>0% CPU :</b> Schläft im Leerlauf komplett ein.<br>• <b>Federleicht :</b> Unter 1 MB Dateigröße.",
+          sc_eyebrow: "Komfort",
+          sc_title: "Schnelle Steuerung im Handumdrehen",
+          sc_intro: "Bequeme Desktop-Bedienung :",
+          sc_list: "• <code>Win + Alt + W</code> : Nächstes Hintergrundbild<br>• <b>[ ⌄ ]</b> Pfeil anklicken, um die Galerie zu öffnen<br>• <b>&lt;</b> und <b>&gt;</b> zum Durchblättern nutzen<br>• Bilddatei einfach per Drag & Drop hineinziehen.",
+          footer_notice: "Optimiert für Windows 10 & 11 auf Monitoren mit hoher Bildwiederholrate.",
+          footer_crumb: "Dynamic Island für Windows",
+          footer_download_col: "Download",
+          footer_setup_link: "Installer (WbbSetup.exe)",
+          footer_share_col: "Community",
+          footer_issues: "Problem melden",
+          footer_copy: "WBB: ein lebendiger Akzent für Ihren Windows-Bildschirm.",
+          footer_legal_download: "Installer (.exe)",
+          theme_light: "Hell",
+          theme_dark: "Dunkel",
+          theme_auto: "System"
+        },
+        es: {
+          label: "Español",
+          nav_overview: "Inicio",
+          nav_features: "Funciones",
+          nav_perf: "Rendimiento",
+          nav_shortcuts: "Atajos",
+          nav_download: "Descargar",
+          hero_intro: "Dale vida a la parte superior de tu pantalla en Windows. Una Dynamic Island elegante con transiciones suaves de fondos de pantalla, esquiva inteligente de ventanas y mínimo consumo.",
+          hero_btn: "Descargar para Windows (WbbSetup.exe)",
+          hero_sub: "Instalador ligero (< 1 MB) • Gratis • Compatible con Windows 10 y 11",
+          callout_title: "Instalador propio • Fácil de instalar y de desinstalar",
+          callout_desc: "Inicio automático con Windows, accesos directos y desinstalación limpia sin dejar archivos residuales.",
+          callout_more: "Ver rendimiento",
+          anim_eyebrow: "Efectos visuales",
+          anim_title: "6 transiciones fluidas para cambiar de fondo",
+          anim_desc_default: "Se acabaron los cortes bruscos. Disfruta de ondas fluidas tipo Genie y efectos de tinta en cada cambio de imagen.",
+          dodge_eyebrow: "Inteligente y discreto",
+          dodge_title: "Se aparta automáticamente mientras trabajas",
+          dodge_desc: "Nunca tapa pestañas ni botones del navegador. Se encoge suavemente en cuanto una ventana toca el borde superior.",
+          perf_eyebrow: "Fluidez",
+          perf_title: "Ultraligero, cero tirones",
+          perf_intro: "Diseñado para ahorrar batería y recursos en todo momento :",
+          perf_list: "• <b>Mínima memoria RAM :</b> Apenas unos pocos megas en reposo.<br>• <b>0% CPU :</b> Reposo total cuando no hay animaciones.<br>• <b>Descarga instantánea :</b> Menos de 1 MB de tamaño.",
+          sc_eyebrow: "Comodidad",
+          sc_title: "Atajos rápidos al alcance de tu mano",
+          sc_intro: "Controla tus fondos en un segundo :",
+          sc_list: "• <code>Win + Alt + W</code> : Siguiente fondo de pantalla<br>• Clic en la flecha <b>[ ⌄ ]</b> para abrir tu galería<br>• Pulsa <b>&lt;</b> y <b>&gt;</b> para navegar entre imágenes<br>• Arrastra cualquier foto directamente para cambiarla.",
+          footer_notice: "Optimizado para Windows 10 y 11 en pantallas de alta resolución.",
+          footer_crumb: "Dynamic Island para Windows",
+          footer_download_col: "Descargas",
+          footer_setup_link: "Instalador (WbbSetup.exe)",
+          footer_share_col: "Comunidad",
+          footer_issues: "Reportar un problema",
+          footer_copy: "WBB: un toque moderno y útil para tu escritorio Windows.",
+          footer_legal_download: "Instalador (.exe)",
+          theme_light: "Claro",
+          theme_dark: "Oscuro",
+          theme_auto: "Sistema"
+        },
+        ru: {
+          label: "Русский",
+          nav_overview: "Обзор",
+          nav_features: "Функции",
+          nav_perf: "Быстродействие",
+          nav_shortcuts: "Горячие клавиши",
+          nav_download: "Скачать установщик",
+          hero_intro: "Верхняя часть вашего экрана Windows теперь живая. Dynamic Island с плавными переходами смены обоев, умным уклонением от окон и нулевой нагрузкой на систему.",
+          hero_btn: "Скачать для Windows (WbbSetup.exe)",
+          hero_sub: "Компактный установщик (< 1 МБ) • Бесплатно • Windows 10 и 11",
+          callout_title: "Собственный установщик • Чистая установка и удаление",
+          callout_desc: "Автозапуск с Windows, ярлык на рабочем столе и удаление без мусора и следов в системе.",
+          callout_more: "Подробнее о производительности",
+          anim_eyebrow: "Плавная смена обоев",
+          anim_title: "6 красивых эффектов перехода для рабочего стола",
+          anim_desc_default: "Больше никаких резких смен картинок. Наслаждайтесь эффектами волны Genie и растекающихся чернил.",
+          dodge_eyebrow: "Умное уклонение",
+          dodge_title: "Автоматически освобождает место для работы",
+          dodge_desc: "Никогда не закроет вкладки браузера или кнопки окна: плавно сворачивается в узкую полоску при наложении.",
+          perf_eyebrow: "Оптимизация",
+          perf_title: "Невероятно лёгкий, не тормозит ПК",
+          perf_intro: "В отличие от тяжелых программ, WBB работает напрямую без лишних библиотек :",
+          perf_list: "• <b>Минимум ОЗУ :</b> Считанные мегабайты в режиме покоя.<br>• <b>0% процессора :</b> Полный сон в фоновом режиме.<br>• <b>Размер менее 1 МБ :</b> Скачивается за одну секунду.",
+          sc_eyebrow: "Быстрый доступ",
+          sc_title: "Удобное управление под рукой",
+          sc_intro: "Меняйте обои прямо с клавиатуры и мыши :",
+          sc_list: "• <code>Win + Alt + W</code> : Следующие обои<br>• Стрелка <b>[ ⌄ ]</b> открывает сохраненную галерею<br>• Кнопки <b>&lt;</b> и <b>&gt;</b> для перелистывания<br>• Перетащите любое фото на остров для мгновенной установки.",
+          footer_notice: "Поддерживает Windows 10 и 11, а также мониторы с высокой герцовкой.",
+          footer_crumb: "Dynamic Island для Windows",
+          footer_download_col: "Загрузка",
+          footer_setup_link: "Установщик (WbbSetup.exe)",
+          footer_share_col: "Сообщество",
+          footer_issues: "Сообщить об ошибке",
+          footer_copy: "WBB: живой остров для вашего рабочего стола Windows.",
+          footer_legal_download: "Установщик (.exe)",
+          theme_light: "Светлая",
+          theme_dark: "Тёмная",
+          theme_auto: "Системная"
+        },
+        id: {
+          label: "Indonesia",
+          nav_overview: "Ikhtisar",
+          nav_features: "Fitur",
+          nav_perf: "Performa",
+          nav_shortcuts: "Pintasan",
+          nav_download: "Unduh Installer",
+          hero_intro: "Bikin bagian atas layar Windows Anda lebih hidup. Nikmati Dynamic Island dengan transisi wallpaper bergelombang yang mulus, pintar menghindar dari jendela, dan sangat ringan.",
+          hero_btn: "Unduh untuk Windows (WbbSetup.exe)",
+          hero_sub: "Installer mandiri super ringan (< 1 MB) • Gratis • Windows 10 & 11",
+          callout_title: "Installer tersendiri • Pasang mudah, copot tanpa sisa sampah",
+          callout_desc: "Mulai otomatis saat menyalakan PC, membuat pintasan desktop, dan dapat dicopot bersih kapan saja.",
+          callout_more: "Lihat detail performa",
+          anim_eyebrow: "Efek Wallpaper Cantik",
+          anim_title: "Ubah layar Anda dengan 6 efek transisi yang menawan",
+          anim_desc_default: "Bukan sekadar ganti gambar kaku. Nikmati efek gelombang Genie dan tetesan tinta yang menyebar lembut setiap kali mengganti wallpaper.",
+          dodge_eyebrow: "Pintar & Tidak Menghalangi",
+          dodge_title: "Otomatis menghindar saat Anda sedang bekerja",
+          dodge_desc: "Tidak akan menghalangi tab browser atau tombol tutup. Otomatis mengecil tipis saat jendela aplikasi menyentuh tepi atas layar.",
+          perf_eyebrow: "Super Ringan",
+          perf_title: "Sangat hemat daya dan tanpa lag",
+          perf_intro: "Berbeda dari aplikasi yang boros baterai, WBB sangat efisien :",
+          perf_list: "• <b>Hemat RAM :</b> Hanya beberapa MB saat diam santai.<br>• <b>0% CPU :</b> Istirahat total saat tidak ada animasi.<br>• <b>Ukuran di bawah 1 MB :</b> Unduh selesai dalam sekejap.",
+          sc_eyebrow: "Praktis",
+          sc_title: "Kendali cepat dalam jangkauan Anda",
+          sc_intro: "Ganti wallpaper dengan mudah dan cepat :",
+          sc_list: "• <code>Win + Alt + W</code> : Ganti ke wallpaper berikutnya<br>• Klik tombol panah <b>[ ⌄ ]</b> untuk buka galeri<br>• Klik <b>&lt;</b> dan <b>&gt;</b> untuk menelusuri gambar<br>• Seret dan lepas foto apa saja untuk langsung memasangnya.",
+          footer_notice: "Dioptimalkan untuk Windows 10 dan 11 di layar resolusi tinggi.",
+          footer_crumb: "Dynamic Island untuk Windows",
+          footer_download_col: "Unduhan",
+          footer_setup_link: "Unduh Installer (WbbSetup.exe)",
+          footer_share_col: "Komunitas",
+          footer_issues: "Laporkan masalah",
+          footer_copy: "WBB: notch hidup yang menyenangkan untuk layar Windows Anda.",
+          footer_legal_download: "Unduh Installer (.exe)",
+          theme_light: "Terang",
+          theme_dark: "Gelap",
+          theme_auto: "Otomatis"
+        }
+      };
+
+      const langDropdown = document.getElementById('lang-dropdown');
+      const langBtn = document.getElementById('lang-btn');
+      const currentLangLabel = document.getElementById('current-lang-label');
+      const langOptions = document.querySelectorAll('.lang-option');
+
+      function applyLanguage(langKey) {
+        const langData = translations[langKey] || translations.vi;
+        document.documentElement.lang = langKey;
+        if (currentLangLabel) currentLangLabel.textContent = langData.label;
+
+        langOptions.forEach(opt => {
+          opt.classList.toggle('active', opt.getAttribute('data-lang') === langKey);
+        });
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.getAttribute('data-i18n');
+          if (langData[key]) {
+            el.innerHTML = langData[key];
+          }
+        });
+
+        try {
+          localStorage.setItem('wbb_lang', langKey);
+        } catch {}
+      }
+
+      // Mở / Đóng menu chọn tiếng
+      if (langBtn && langDropdown) {
+        langBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const isOpen = langDropdown.classList.toggle('open');
+          langBtn.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        document.addEventListener('click', () => {
+          langDropdown.classList.remove('open');
+          langBtn.setAttribute('aria-expanded', 'false');
+        });
+      }
+
+      langOptions.forEach(opt => {
+        opt.addEventListener('click', () => {
+          const lang = opt.getAttribute('data-lang');
+          applyLanguage(lang);
+          if (langDropdown) langDropdown.classList.remove('open');
+        });
+      });
+
+      // Tự động nhận diện ngôn ngữ đã lưu hoặc theo trình duyệt
+      let initialLang = 'vi';
+      try {
+        initialLang = localStorage.getItem('wbb_lang') || (navigator.language && navigator.language.slice(0, 2)) || 'vi';
+      } catch {}
+      if (!translations[initialLang]) initialLang = 'vi';
+      applyLanguage(initialLang);
+
+    })();
+  </script>
+  <script>
+    (() => {
+      const form = document.getElementById('feedback-form');
+      const status = document.getElementById('feedback-status');
+      const submitButton = form?.querySelector('button[type="submit"]');
+      if (!form || !status || !submitButton) return;
+
+      const defaultButtonText = submitButton.textContent;
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        status.textContent = '';
+        submitButton.disabled = true;
+        submitButton.textContent = 'Đang gửi…';
+
+        try {
+          const response = await fetch('https://formsubmit.co/ajax/drbr.studio@gmail.com', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(Object.fromEntries(new FormData(form)))
+          });
+          const result = await response.json();
+          if (!response.ok || (result.success !== true && result.success !== 'true')) {
+            throw new Error('Không gửi được phản hồi. Vui lòng thử lại sau.');
+          }
+
+          form.reset();
+          status.textContent = 'Cảm ơn bạn! Góp ý đã được gửi.';
+        } catch {
+          status.textContent = 'Chưa gửi được. Kiểm tra kết nối mạng rồi thử lại nhé.';
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = defaultButtonText;
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
